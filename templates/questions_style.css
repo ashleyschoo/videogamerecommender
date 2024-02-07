@@ -1,0 +1,28 @@
+*{box-sizing:border-box}
+        header{
+            display: block;
+            height: 300px;
+            }
+        h1{
+            color: #6A2E2A;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        h2{
+            color: #6A2E2A;
+            font-weight: bold;
+            text-align: center;
+            font-size: 18;
+            }
+
+        body{
+            background: #FFE4E1;
+            }
+
+        a{
+            color: #6A2E2A;
+            font-weight: bold;
+            text-align: center;
+            font-size: 18;
+            }
