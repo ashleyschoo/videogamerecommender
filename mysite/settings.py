@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'crispy_forms',
     'django_filters',
     'corsheaders',
@@ -65,7 +66,10 @@ MIDDLEWARE = [
 # a file:// domain. Defaults to [].
 # Port 3000 is the default port for React apps.
 CORS_ORIGIN_WHITELIST = (
-    '127.0.0.1:3000/'
+    'http://127.0.0.1:3000',
+    'http://localhost:3000',
+    'http://localhost:8000',
+    'http://localhost:8080',
 )
 
 ROOT_URLCONF = 'mysite.urls'
@@ -107,7 +111,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'games',
         'USER': 'aschoo',
-        'PASSWORD': 'MyPassword',
+        'PASSWORD': 'Password12!',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {

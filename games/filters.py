@@ -30,7 +30,7 @@ class FilterView(django_filters.FilterSet):
 		)
 
 	class Meta:
-		model = games
+		model = VideoGames
 		# form = SearchForm
 		# fields [] is required, even if empty.
 		fields = ['VideoGameID','AgeRating','GenreCategory','NumberofPlayers','PopularityRating']
@@ -58,15 +58,15 @@ class VideoGameNameFilterView(django_filters.FilterSet):
 
 
 
-	PC(Windows) = django_filters.ModelChoiceFilter(
-		queryset=VideoGames.objects.all().order_by("PC(Windows)"),
-		field_name = 'PC(Windows)',
-		label = 'PC(Windows)',
+	PC_Windows = django_filters.ModelChoiceFilter(
+		queryset=VideoGames.objects.all().order_by("PC_Windows"),
+		field_name = 'PC_Windows',
+		label = 'PC_Windows',
 		)
-	PC(MAC) = django_filters.ModelChoiceFilter(
-		queryset=VideoGames.objects.all().order_by("PC(MAC)"),
-		field_name = 'PC(MAC)',
-		label = 'PC(MAC)',
+	PC_MAC = django_filters.ModelChoiceFilter(
+		queryset=VideoGames.objects.all().order_by("PC_MAC"),
+		field_name = 'PC_MAC',
+		label = 'PC_MAC',
 		)
 
 	Playstation = django_filters.ModelChoiceFilter(
@@ -88,21 +88,21 @@ class VideoGameNameFilterView(django_filters.FilterSet):
 		label = 'Xbox',
 		)
 
-	Phone(Android) = django_filters.ModelChoiceFilter(
-		queryset=VideoGames.objects.all().order_by("Phone(Android)"),
-		field_name='Phone(Android)',
-		label = 'Phone(Android)',
+	Phone_Android = django_filters.ModelChoiceFilter(
+		queryset=VideoGames.objects.all().order_by("Phone_Android"),
+		field_name='Phone_Android',
+		label = 'Phone_Android',
 		)
 
 
-	Phone(iPhone) = django_filters.ModelChoiceFilter(
-		queryset=VideoGames.objects.all().order_by("Phone(iPhone)"),
-		field_name='Phone(iPhone)',
-		label = 'Phone(iPhone)',
+	Phone_iPhone = django_filters.ModelChoiceFilter(
+		queryset=VideoGames.objects.all().order_by("Phone_iPhone"),
+		field_name='Phone_iPhone',
+		label = 'Phone_iPhone',
 		)
 
 	class Meta:
-		model = games
+		model = VideoGames
 		# form = SearchForm
 		# fields [] is required, even if empty.
 		fields = []

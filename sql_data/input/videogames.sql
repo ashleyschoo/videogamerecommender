@@ -1,5 +1,5 @@
 
--- DROP DATABASE VideoGames;
+ --DROP DATABASE IF EXISTS VideoGames;
 
 -- CREATE DATABASE VideoGames;
 -- USE VideoGames;
@@ -20,7 +20,7 @@ ENGINE=InnoDB
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_0900_ai_ci;
 
-INSERT INTO AgeRating VALUES ('Everyone','Everyone10+','Teen13+','Mature17+','AduDlt18+');
+INSERT INTO AgeRating VALUES ('Everyone','Everyone10+','Teen13+','Mature17+','Adult18+');
 
 -- 2.2 GenreCateogry
 CREATE TABLE IF NOT EXISTS GenreCategory (
