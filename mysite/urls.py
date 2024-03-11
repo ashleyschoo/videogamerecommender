@@ -27,6 +27,8 @@ from django.http import HttpResponseRedirect
 urlpatterns = [
     url(r'^$', lambda r: HttpResponseRedirect('home/')),
     path('games/', include('games.urls')),
+    path('resultsfilter/', include('games.urls')),
+    path('questions/', include('games.urls')),
     path('home/', include('games.urls')),
     path('admin/', admin.site.urls),
     path('', include('games.urls')),

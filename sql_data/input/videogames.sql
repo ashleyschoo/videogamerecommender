@@ -1,8 +1,8 @@
 
  --DROP DATABASE IF EXISTS VideoGames;
 
--- CREATE DATABASE VideoGames;
--- USE VideoGames;
+ CREATE DATABASE VideoGames;
+ USE VideoGames;
 --
 -- 1.0 Setup. Delete tables after every build iteration.
 --
@@ -23,7 +23,7 @@ COLLATE utf8mb4_0900_ai_ci;
 INSERT INTO AgeRating VALUES ('Everyone','Everyone10+','Teen13+','Mature17+','Adult18+');
 
 -- 2.2 GenreCateogry
-CREATE TABLE IF NOT EXISTS GenreCategory (
+CREATE TABLE IF NOT EXISTS  GenreCategory (
   GenreCategoryID INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
   GenreCategory VARCHAR(255) NOT NULL,
   PRIMARY KEY (GenreCategoryID)
@@ -75,12 +75,20 @@ CREATE TABLE IF NOT EXISTS VideoGames (
   Description VARCHAR(255),
   YouTubeTrailerLink VARCHAR(255),
   PRIMARY KEY (VideoGameID),
-  FOREIGN KEY (AgeRatingID) REFERENCES AgeRating(AgeRatingID) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (GenreCategoryID) REFERENCES GenreCategory(GenreCategoryID) ON DELETE CASCADE ON UPDATE CASCADE,  
-  FOREIGN KEY (NumberofPlayersID) REFERENCES NumberofPlayers(NumberofPlayersID) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (PopularityRatingID) REFERENCES PopularityRating(PopularityRatingID) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (AgeRatingID) REFERENCES AgeRating(AgeRatingID) ON DELETE RESTRICT ON UPDATE CASCADE,
+  FOREIGN KEY (GenreCategoryID) REFERENCES GenreCategory(GenreCategoryID) ON DELETE RESTRICT ON UPDATE CASCADE,  
+  FOREIGN KEY (NumberofPlayersID) REFERENCES NumberofPlayers(NumberofPlayersID) ON DELETE RESTRICT ON UPDATE CASCADE,
+  FOREIGN KEY (PopularityRatingID) REFERENCES PopularityRating(PopularityRatingID) ON DELETE RESTRICT ON UPDATE CASCADE
 )
 ENGINE=InnoDB
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_0900_ai_ci;
+
+LOAD DATA LOCAL INFILE 'C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/output/video_game_csv_trimmed.csv'
+INTO TABLE VideoGames
+  CHARACTER SET utf8mb4
+  FIELDS TERMINATED BY ','
+  LINES TERMINATED BY '\n'
+  (VideoGameName, GenreCategory, AgeRating, PopularityRating, PC_Windows, PC_MAC, Playstation, NintendoSwitch, Xbox, Phone_Android, Phone_iPhone, Description, `Youtube trailer link`, `Number of players`
+);
 

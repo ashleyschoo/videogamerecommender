@@ -1,0 +1,45 @@
+{% extends 'games/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<article>
+	<header>
+	  <div class="row">
+	    <div class="col-sm-11">
+	      <h2>Game Recommendation Results</h2>
+	    </div>
+	    <div class="col-sm-7">
+	    	&nbsp;<a class="btn btn-outline-primary" href="{% url 'questions' %}">New Search</a>
+      		Select one or more filters relevant to your search and then click "filter".
+    	</div>
+	  </div>
+	</header>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="px-2 py-2" style="border:1px solid #8E8D8A;">
+        <form action="" method="get">
+          {{ filter.form|crispy }}
+          <!-- adds a submit button -->
+          <button type="submit" class="btn btn-outline-primary" >Submit</button>
+    		&nbsp;<button type="reset" value="reset" class="btn btn-outline-secondary">Clear</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-6">
+
+      {% for games in object_list %}
+        <h4> <a href="{% url 'resultsfilter' videogames.pk %}">{{ videogames.VideoGameName | safe }}</a></h4>
+        {{ videogames.VideoGameName | safe }}
+        {{ videogames.description | safe }}
+        {{ videogames.youtubetrailerlink | safe }}
+        {{ videogames.genrecategory | safe }}
+        {{ videogames.agerating | safe }}
+        {{ videogames.numberofplayers | safe }}
+        {{ videogames.popularityrating | safe }}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}

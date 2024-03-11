@@ -32,7 +32,7 @@ def index(request):
     return HttpResponse("Hello, world. You're at the games index.")
 
 def index(request):
-    latest_question_list = VideoGames.objects.order_by('-pub_date')[:5]
+    latest_question_list = VideoGames.objects.order_by('VideoGameName')[:5]
     template = loader.get_template('games/questions.html')
     context = {
         'latest_question_list': latest_question_list,
@@ -53,10 +53,10 @@ class AboutPageView(generic.TemplateView):
     template_name = 'games/about.html'  
 
 class QuestionPageView(generic.TemplateView):
-    template_name = 'games/results_filter.html'     
+    template_name = 'games/questions.html'     
 
 class FilterView(FilterView):
     model = VideoGames
     filterset_class = FilterView
-    template_name = 'games/results_filter.html'
+    template_name = 'games/resultsfilter.html'
     context_object_name = 'VideoGames'      

@@ -31,7 +31,8 @@
     <div class="col-sm-6">
 
       {% for games in object_list %}
-        <h4> <a href="{% url 'results_filter' videogames.pk %}">{{ videogames.games | safe }}</a></h4>
+        <h4> <a href="{% url 'resultsfilter' videogames.pk %}">{{ videogames.games | safe }}</a></h4>
+        {{ videogames.VideoGameName | safe }}
         {{ videogames.description | safe }}
         {{ videogames.youtubetrailerlink | safe }}
         {{ videogames.genrecategory | safe }}

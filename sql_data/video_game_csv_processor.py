@@ -49,7 +49,7 @@ def trim_columns(data_frame):
 	:return: trimmed data frame
 	"""
 	trim = lambda x: x.strip() if type(x) is str else x
-	return data_frame.applymap(trim)
+	return data_frame.map(trim)
 
 
 def write_series_to_csv(series, path, delimiter=',', row_name=True):
@@ -84,13 +84,16 @@ def extract_filtered_series(data_frame, column_list):
 
 
 # Read Video Game Information data (check encoding)
-video_game_csv = 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/input/video_game.csv'
+video_game_csv = "C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/input/video_game.csv"
+#'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/input/video_game.csv'
+
 encoding = find_encoding(video_game_csv)
 video_game_data_frame_untrimmed = read_csv(video_game_csv, encoding, ',')
 logging.info(msg[0].format(os.path.abspath(video_game_csv)))
 
 video_game_data_frame = trim_columns(video_game_data_frame_untrimmed)
-csv = 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/output/video_game_csv_trimmed.csv'
+csv = "C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/output/video_game_csv_trimmed.csv"
+#'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/output/video_game_csv_trimmed.csv'
 write_series_to_csv(video_game_data_frame, csv, ',', False)
 logging.info(msg[1].format(os.path.abspath(video_game_csv)))
 
@@ -101,14 +104,3 @@ logging.info(msg[1].format(os.path.abspath(video_game_csv)))
 
 if __name__ == '__main__':
 	sys.exit(main())
-
-
-
-
-
-
-
-
-
-
-
