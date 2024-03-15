@@ -13,13 +13,68 @@ def main(argv=None):
 	"""
 	if argv is None:
 		argv = sys.argv
-msg = [
+	
+	msg = [
 		'Source file read {0}',	#0
-		'Video Games written to file {0}',	#1
+		'Video Game file processed' #1
+		'AgeRating {0}', #2
+		'GenreCategory {0}', #3
+		'NumberofPlayers {0}', #4
+		'PopularityRating {0}', #5
+		'Videogames written to file {0}' #6
 	]
 
-# Setting logging format and default level
-logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.DEBUG)
+	# Setting logging format and default level
+	logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.DEBUG)
+
+	# Read Video Game Information data (check encoding)
+	video_game_csv = "C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/input/video_game.csv"
+	#'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/input/video_game.csv'
+
+	encoding = find_encoding(video_game_csv)
+	video_game_data_frame_untrimmed = read_csv(video_game_csv, encoding, ',')
+	logging.info(msg[0].format(os.path.abspath(video_game_csv)))
+
+	video_game_data_frame = trim_columns(video_game_data_frame_untrimmed)
+	csv = "C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/output/video_game_csv_trimmed.csv"
+	#'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/output/video_game_csv_trimmed.csv'
+	write_series_to_csv(video_game_data_frame, csv, ',', False)
+	logging.info(msg[1].format(os.path.abspath(video_game_csv)))	
+
+	# Write AgeRating name to a .csv file
+	AgeRating = extract_filtered_series(video_game_data_frame, ['AgeRating'])
+	AgeRating_csv = 'C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/output/AgeRating.csv'
+	write_series_to_csv(AgeRating, AgeRating_csv, ',', False)
+	logging.info(msg[2].format(os.path.abspath(AgeRating_csv)))
+
+	# Write GenreCategory name to a .csv file
+	GenreCategory = extract_filtered_series(video_game_data_frame, ['GenreCategory'])
+	GenreCategory_csv = 'C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/output/GenreCategory.csv'
+	write_series_to_csv(GenreCategory, GenreCategory_csv, ',', False)
+	logging.info(msg[3].format(os.path.abspath(GenreCategory_csv)))
+
+	# Write NumberofPlayers name to a .csv file
+	NumberofPlayers = extract_filtered_series(video_game_data_frame, ['NumberofPlayers'])
+	#NumberofPlayers_csv = 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/output/NumberofPlayers.csv'
+	NumberofPlayers_csv = 'C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/output/NumberofPlayers.csv'	
+	write_series_to_csv(NumberofPlayers, NumberofPlayers_csv, ',', False)
+	logging.info(msg[4].format(os.path.abspath(NumberofPlayers_csv)))
+
+	# Write PopularityRating name to a .csv file
+	PopularityRating = extract_filtered_series(video_game_data_frame, ['PopularityRating'])
+	PopularityRating_csv = 'C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/output/PopularityRating.csv'
+	write_series_to_csv(PopularityRating, PopularityRating_csv, ',', False)
+	logging.info(msg[5].format(os.path.abspath(PopularityRating_csv)))	
+
+
+# 	# Write VideoGameName name to a .csv file
+# 	VideoGameName = extract_filtered_series(video_game_data_frame, ['VideoGameName','PC_Windows','PC_MAC','Playstation','NintendoSwitch','Xbox','Phone_Android','Phone_iPhone','Description','YoutubeTrailerLink'
+# ])
+# 	VideoGameName_csv = 'C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/output/VideoGameName.csv'
+# 	write_series_to_csv(VideoGameName, VideoGameName_csv, ',', False)
+# 	logging.info(msg[6].format(os.path.abspath(VideoGameName_csv)))	
+
+
 
 def find_encoding(fname):
 	r_file = open(fname, 'rb').read()
@@ -76,30 +131,7 @@ def extract_filtered_series(data_frame, column_list):
 
 	return data_frame[column_list].drop_duplicates().dropna(axis=0, how='all').sort_values(
 		column_list)
-# return data_frame[column_list].str.strip().drop_duplicates().dropna().sort_values()
-
-
-
-
-
-
-# Read Video Game Information data (check encoding)
-video_game_csv = "C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/input/video_game.csv"
-#'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/input/video_game.csv'
-
-encoding = find_encoding(video_game_csv)
-video_game_data_frame_untrimmed = read_csv(video_game_csv, encoding, ',')
-logging.info(msg[0].format(os.path.abspath(video_game_csv)))
-
-video_game_data_frame = trim_columns(video_game_data_frame_untrimmed)
-csv = "C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/output/video_game_csv_trimmed.csv"
-#'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/output/video_game_csv_trimmed.csv'
-write_series_to_csv(video_game_data_frame, csv, ',', False)
-logging.info(msg[1].format(os.path.abspath(video_game_csv)))
-
-
-
-
+	# return data_frame[column_list].str.strip().drop_duplicates().dropna().sort_values()
 
 
 if __name__ == '__main__':

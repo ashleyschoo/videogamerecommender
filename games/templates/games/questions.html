@@ -12,8 +12,9 @@
 	    </div>
 	    <div class="col-sm-7">
 	    	&nbsp;<a class="btn btn-outline-primary" href="{% url 'questions' %}">New Search</a>
-      		Select one or more filters relevant to your search and then click "filter".
+      		
     	</div>
+      Select one or more filters relevant to your search and then click "submit".
 	  </div>
 	</header>
 
@@ -31,14 +32,35 @@
     <div class="col-sm-6">
 
       {% for games in object_list %}
-        <h4> <a href="{% url 'resultsfilter' videogames.pk %}">{{ videogames.VideoGameName | safe }}</a></h4>
-        {{ videogames.VideoGameName | safe }}
-        {{ videogames.description | safe }}
-        {{ videogames.youtubetrailerlink | safe }}
-        {{ videogames.genrecategory | safe }}
-        {{ videogames.agerating | safe }}
-        {{ videogames.numberofplayers | safe }}
-        {{ videogames.popularityrating | safe }}
+        <h4> <a href="{% url 'games_detail' videogames.pk %}">{{ videogames.VideoGameName | safe }}</a></h4>
+        {% if videogames.numberofplayers %}
+          {{ videogames.numberofplayers | safe }}
+        {% endif %}  
+
+        {% if videogames.VideoGameName %}
+          {{ videogames.VideoGameName | safe }}
+        {% endif %} 
+
+        {% if videogames.description %}  
+          {{ videogames.description | safe }}
+        {% endif %}         
+
+        {% if videogames.numberofplayers %}
+          {{ videogames.youtubetrailerlink | safe }}
+        {% endif %}        
+
+        {% if videogames.genrecategory %}
+          {{ videogames.genrecategory | safe }}
+        {% endif %} 
+
+        {% if videogames.agerating %}
+          {{ videogames.agerating | safe }}
+        {% endif %} 
+
+        {% if videogames.popularityrating %}
+          {{ videogames.popularityrating | safe }}
+        {% endif %} 
+
       {% endfor %}
     </div>
   </div>
