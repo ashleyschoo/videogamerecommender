@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'crispy_bootstrap4',
     'pyarrow',
+
 ]
 
 MIDDLEWARE = [
@@ -111,13 +112,13 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'games',
+        'NAME': 'VideoGames',
         'USER': 'aschoo',
         'PASSWORD': 'Password12!',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
-            'read_default_file': 'C:\ProgramData\MySQL\MySQL Server 8.0\my.ini',
+            'read_default_file': 'C:/ProgramData/MySQL/MySQL Server 8.0/my.ini',
         }
     }
 }
@@ -143,15 +144,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',                                
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'EST'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = True
 
@@ -159,7 +165,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIS_ROOT = os.path.join(BASE_DIR, "static")
 
 

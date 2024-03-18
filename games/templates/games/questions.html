@@ -32,33 +32,33 @@
     <div class="col-sm-6">
 
       {% for games in object_list %}
-        <h4> <a href="{% url 'games_detail' videogames.pk %}">{{ videogames.VideoGameName | safe }}</a></h4>
-        {% if videogames.numberofplayers %}
-          {{ videogames.numberofplayers | safe }}
+        <h4> <a href="{% url 'game' VideoGames.pk %}">{{ VideoGames.VideoGameName | safe }}</a></h4>
+        {% if VideoGames.NumberofPlayers %}
+          {{ VideoGames.NumberofPlayers | safe }}
         {% endif %}  
 
-        {% if videogames.VideoGameName %}
-          {{ videogames.VideoGameName | safe }}
+        {% if VideoGames.VideoGameName %}
+          {{ VideoGames.VideoGameName | safe }}
         {% endif %} 
 
-        {% if videogames.description %}  
-          {{ videogames.description | safe }}
+        {% if VideoGames.Description %}  
+          {{ VideoGames.Description | safe }}
         {% endif %}         
 
-        {% if videogames.numberofplayers %}
-          {{ videogames.youtubetrailerlink | safe }}
+        {% if VideoGames.YouTubeTrailerLink %}
+          {{ VideoGames.YouTubeTrailerLink | safe }}
         {% endif %}        
 
-        {% if videogames.genrecategory %}
-          {{ videogames.genrecategory | safe }}
+        {% if VideoGames.GenreCategory %}
+          {{ VideoGames.GenreCategory | safe }}
         {% endif %} 
 
-        {% if videogames.agerating %}
-          {{ videogames.agerating | safe }}
+        {% if VideoGames.AgeRating %}
+          {{ VideoGames.AgeRating | safe }}
         {% endif %} 
 
-        {% if videogames.popularityrating %}
-          {{ videogames.popularityrating | safe }}
+        {% if VideoGames.PopularityRating %}
+          {{ VideoGames.PopularityRating | safe }}
         {% endif %} 
 
       {% endfor %}

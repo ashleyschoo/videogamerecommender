@@ -7,5 +7,8 @@ urlpatterns = [
     path('home', views.HomePageView.as_view(), name='home'),
     path('questions/', views.QuestionPageView.as_view(), name='questions'),
     path('resultsfilter/', views.FilterView.as_view(), kwargs=None, name='resultsfilter'),
+    path('games_detail/', views.FilterView.as_view(), kwargs=None, name='games_detail'),
+    path('game/', views.VideoGamesListView.as_view(), kwargs=None, name='game'),
+
 
 ]

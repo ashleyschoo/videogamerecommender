@@ -1,0 +1,35 @@
+{% extends 'games/base.html' %}
+  {% load video_game_extras %}
+
+{% block content %}
+
+
+<article>
+  <header>
+	<div class="row">
+	  <div class="col-sm-11">
+		<h2>VideoGames</h2>
+	  </div>
+
+	</div>
+  </header>
+
+
+  {% if VideoGames %}
+  <ul>
+	 {% for game in VideoGames %}
+
+
+	<!-- safe filter on for raw HTML stored in database -->
+	<li><a href="{% url 'games_detail' VideoGames.pk %}">{{ VideoGames.VideoGameName | safe }}</a></li>
+	{% endfor %}
+
+  </ul>
+  {% else %}
+  <p>No games are available to view.</p>
+  {% endif %}
+
+  <p>page count: {{ VideoGames.count }}</p>
+</article>
+
+{% endblock content %}}

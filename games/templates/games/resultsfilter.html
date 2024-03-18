@@ -31,14 +31,14 @@
     <div class="col-sm-6">
 
       {% for games in object_list %}
-        <h4> <a href="{% url 'resultsfilter' videogames.pk %}">{{ videogames.games | safe }}</a></h4>
-        {{ videogames.VideoGameName | safe }}
-        {{ videogames.description | safe }}
-        {{ videogames.youtubetrailerlink | safe }}
-        {{ videogames.genrecategory | safe }}
-        {{ videogames.agerating | safe }}
-        {{ videogames.numberofplayers | safe }}
-        {{ videogames.popularityrating | safe }}
+        <h4> <a href="{% url 'resultsfilter' VideoGames.pk %}">{{ VideoGames.games | safe }}</a></h4>
+        {{ VideoGames.VideoGameName | safe }}
+        {{ VideoGames.Description | safe }}
+        {{ VideoGames.YouTubeTrailerLink | safe }}
+        {{ VideoGames.GenreCategory | safe }}
+        {{ VideoGames.AgeRating | safe }}
+        {{ VideoGames.NumberofPlayers | safe }}
+        {{ VideoGames.PopularityRating | safe }}
       {% endfor %}
     </div>
   </div>

@@ -1,14 +1,7 @@
 
- --DROP DATABASE IF EXISTS VideoGames;
-
- --CREATE DATABASE VideoGames;
- USE VideoGames;
-
-
-
 -- 1.0 Setup. Delete tables after every build iteration.
 SET FOREIGN_KEY_CHECKS=0;
-DROP TABLE IF EXISTS VideoGames, AgeRating, GenreCategory, NumberofPlayers, PopularityRating;
+DROP TABLE IF EXISTS VideoGames, temp_VideoGames, AgeRating, GenreCategory, NumberofPlayers, PopularityRating;
 SET FOREIGN_KEY_CHECKS=1;
 
 -- 2.0 ENTITIES
@@ -28,9 +21,9 @@ INTO TABLE AgeRating
   CHARACTER SET utf8mb4
   FIELDS TERMINATED BY ','
   LINES TERMINATED BY '\n'
+  IGNORE 1 LINES
   (AgeRating);
 
---INSERT INTO AgeRating VALUES ('Everyone','Everyone10+','Teen13+','Mature17+','Adult18+');
 
 -- 2.2 GenreCateogry
 CREATE TABLE IF NOT EXISTS  GenreCategory (
@@ -42,14 +35,14 @@ ENGINE=InnoDB
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_0900_ai_ci;
 
-LOAD DATA LOCAL INFILE 'C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/output/GenreCateogry.csv'
-INTO TABLE GenreCateogry
+LOAD DATA LOCAL INFILE 'C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/output/GenreCategory.csv'
+INTO TABLE GenreCategory
   CHARACTER SET utf8mb4
   FIELDS TERMINATED BY ','
   LINES TERMINATED BY '\n'
-  (GenreCateogry);
+  IGNORE 1 LINES
+  (GenreCategory);
 
---INSERT INTO GenreCategory VALUES ('Cozy','Horror','FPS','Adventure/RPG','Puzzle/Word','City Builder','Racing','Third-person Shooter','Fighting','Sports');
 
 -- 2.3 NumberofPlayers
 CREATE TABLE IF NOT EXISTS NumberofPlayers (
@@ -67,9 +60,9 @@ INTO TABLE NumberofPlayers
   CHARACTER SET utf8mb4
   FIELDS TERMINATED BY ','
   LINES TERMINATED BY '\n'
+  IGNORE 1 LINES
   (NumberofPlayers);
 
---INSERT INTO NumberofPlayers VALUES ('1','2','3-4','5+');
 
 
 -- 2.4 PopularityRating
@@ -87,24 +80,24 @@ INTO TABLE PopularityRating
   CHARACTER SET utf8mb4
   FIELDS TERMINATED BY ','
   LINES TERMINATED BY '\n'
+  IGNORE 1 LINES
   (PopularityRating);
 
---INSERT INTO PopularityRating VALUES ('Overwhelmingly Positive','Very Positive','Positive','Mostly Positive');
 
 
--- 2.5 video games table
+-- 2.5 video games temp table
  
- CREATE TEMPORARY TABLE temp_VideoGames 
+ CREATE  TABLE temp_VideoGames 
  (
   VideoGameID INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
   VideoGameName VARCHAR(255) NOT NULL,
-  PC_Windows binary(1),
-  PC_MAC binary(1),
-  Playstation binary(1),
-  NintendoSwitch binary(1),
-  Xbox binary(1),
-  Phone_Android binary(1),
-  Phone_iPhone binary(1),
+  PC_Windows VARCHAR(1),
+  PC_MAC VARCHAR(1),
+  Playstation VARCHAR(1),
+  NintendoSwitch VARCHAR(1),
+  Xbox VARCHAR(1),
+  Phone_Android VARCHAR(1),
+  Phone_iPhone VARCHAR(1),
   Description VARCHAR(255),
   YouTubeTrailerLink VARCHAR(255),
   AgeRating VARCHAR(255),
@@ -123,7 +116,6 @@ INTO TABLE PopularityRating
   LINES TERMINATED BY '\n'
   IGNORE 1 LINES
   (  
-  VideoGameID,
   VideoGameName,
   PC_Windows,
   PC_MAC,
@@ -140,18 +132,23 @@ INTO TABLE PopularityRating
   PopularityRating
   );
 
+-- 2.6 video games permanent table
 CREATE TABLE IF NOT EXISTS VideoGames (
   VideoGameID INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
   VideoGameName VARCHAR(255) NOT NULL,
-  PC_Windows binary(1),
-  PC_MAC binary(1),
-  Playstation binary(1),
-  NintendoSwitch binary(1),
-  Xbox binary(1),
-  Phone_Android binary(1),
-  Phone_iPhone binary(1),
+  PC_Windows VARCHAR(1),
+  PC_MAC VARCHAR(1),
+  Playstation VARCHAR(1),
+  NintendoSwitch VARCHAR(1),
+  Xbox VARCHAR(1),
+  Phone_Android VARCHAR(1),
+  Phone_iPhone VARCHAR(1),
   Description VARCHAR(255),
   YouTubeTrailerLink VARCHAR(255),
+  AgeRatingID INTEGER,
+  GenreCategoryID INTEGER,
+  NumberofPlayersID INTEGER,
+  PopularityRatingID INTEGER,
   PRIMARY KEY (VideoGameID),
   FOREIGN KEY (AgeRatingID) REFERENCES AgeRating(AgeRatingID) ON DELETE RESTRICT ON UPDATE CASCADE,
   FOREIGN KEY (GenreCategoryID) REFERENCES GenreCategory(GenreCategoryID) ON DELETE RESTRICT ON UPDATE CASCADE,  
@@ -175,12 +172,13 @@ INSERT IGNORE INTO VideoGames
   Phone_iPhone,
   Description,
   YouTubeTrailerLink,
-  AgeRating_ID,
-  GenreCategory_ID,
-  NumberofPlayers_ID,
-  PopularityRating_ID
+  AgeRatingID,
+  GenreCategoryID,
+  NumberofPlayersID,
+  PopularityRatingID
  )
-  SELECT DISTINCT v.*, a.AgeRating_ID, g.GenreCategory_ID, n.NumberofPlayers_ID, p.PopularityRating_ID
+  SELECT DISTINCT v.VideoGameName, v.PC_Windows, v.PC_MAC, v.Playstation, v.NintendoSwitch, v.Xbox, v.Phone_Android, v.Phone_iPhone, v.Description,
+  v.YouTubeTrailerLink, a.AgeRatingID, g.GenreCategoryID, n.NumberofPlayersID, p.PopularityRatingID
   FROM temp_VideoGames as v
   LEFT JOIN AgeRating as a
   ON v.AgeRating = a.AgeRating

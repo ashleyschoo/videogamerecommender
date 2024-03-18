@@ -11,87 +11,87 @@ from django.urls import reverse
 
 # Create your models here.
 
-class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+# class Question(models.Model):
+#     question_text = models.CharField(max_length=200)
+#     pub_date = models.DateTimeField('date published')
 
 
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+# class Choice(models.Model):
+#     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+#     choice_text = models.CharField(max_length=200)
+#     votes = models.IntegerField(default=0)
 
 
 class AgeRating(models.Model):
-    AgeRatingid = models.AutoField(primary_key=True)
+    AgeRatingID = models.AutoField(primary_key=True)
     AgeRating = models.CharField(max_length=255)
 
     class Meta:
         managed = False
         db_table = 'AgeRating'
-        ordering = ['AgeRating']
+        ordering = ['AgeRatingID']
         verbose_name = 'AgeRating'
         verbose_name_plural = 'AgeRatings'
 
     def __str__(self):
-        return self.AgeRating
+        return str(self.AgeRating)
 
 class GenreCategory(models.Model):
-    GenreCategoryid = models.AutoField(primary_key=True)
+    GenreCategoryID = models.AutoField(primary_key=True)
     GenreCategory = models.CharField(max_length=255)
 
     class Meta:
         managed = False
         db_table = 'GenreCategory'
-        ordering = ['GenreCategory']
+        ordering = ['GenreCategoryID']
         verbose_name = 'GenreCategory'
         verbose_name_plural = 'GenreCategories'
 
     def __str__(self):
-        return self.GenreCategory
+        return str(self.GenreCategory)
 
 
 class NumberofPlayers(models.Model):
-    NumberofPlayersid = models.AutoField(primary_key=True)
+    NumberofPlayersID = models.AutoField(primary_key=True)
     NumberofPlayers = models.CharField(max_length=255)
 
     class Meta:
         managed = False
         db_table = 'NumberofPlayers'
-        ordering = ['NumberofPlayers']
+        ordering = ['NumberofPlayersID']
         verbose_name = 'NumberofPlayers'
         verbose_name_plural = 'NumberofPlayers'
 
     def __str__(self):
-        return self.NumberofPlayers
+        return str(self.NumberofPlayers)
 
 class PopularityRating(models.Model):
-    PopularityRatingid = models.AutoField(primary_key=True)
+    PopularityRatingID = models.AutoField(primary_key=True)
     PopularityRating = models.CharField(max_length=255)
 
     class Meta:
         managed = False
         db_table = 'PopularityRating'
-        ordering = ['PopularityRating']
+        ordering = ['PopularityRatingID']
         verbose_name = 'PopularityRating'
         verbose_name_plural = 'PopularityRatings'
 
     def __str__(self):
-        return self.PopularityRating
+        return str(self.PopularityRating)
 
 
 class VideoGames(models.Model):
-    VideoGamesid = models.AutoField(primary_key=True)
+    VideoGameID = models.AutoField(primary_key=True)
     VideoGameName = models.CharField(unique=True, max_length=255)
-    Description = models.CharField(max_length=255)
-    YoutubeTrailerLink = models.CharField(max_length=255)
     PC_Windows = models.CharField(max_length=1)
     PC_MAC = models.CharField(max_length=1)
     Playstation = models.CharField(max_length=1)
     NintendoSwitch = models.CharField(max_length=1)
     Xbox = models.CharField(max_length=1)
     Phone_Android = models.CharField(max_length=1)
-    Phone_iPhone = models.CharField(max_length=1)
+    Phone_iPhone = models.CharField(max_length=1)    
+    Description = models.CharField(max_length=255)
+    YouTubeTrailerLink = models.CharField(max_length=255)
     AgeRating = models.ForeignKey('AgeRating', models.DO_NOTHING, blank=True, null=True)
     GenreCategory = models.ForeignKey('GenreCategory', models.DO_NOTHING, blank=True, null=True)
     NumberofPlayers = models.ForeignKey('NumberofPlayers', models.DO_NOTHING, blank=True, null=True)
@@ -101,13 +101,31 @@ class VideoGames(models.Model):
     class Meta:
         managed = False
         db_table = 'VideoGames'
-        ordering = ['VideoGamesid']
+        ordering = ['VideoGameID']
         verbose_name = 'VideoGame'
         verbose_name_plural = 'VideoGames'
 
     def __str__(self):
-        return self.VideoGameName
+        return str(self.VideoGameName)
 
     def get_absolute_url(self):
         return reverse('games_detail', kwargs={'pk': self.pk})
+
+
+    def VideoGame_display(self):
+        return ', '.join(VideoGames.VideoGame for VideoGames in self.VideoGames.all()[:4])
+
+    VideoGame_display.short_description = 'Recommended Games: '
+
+    @property
+    def VideoGames_list(self):
+        VideoGames = self.VideoGamesID
+        names = []
+        for VideoGame in VideoGames:
+            name = VideoGames.VideoGameName
+            if name is None:
+                continue
+            if name not in names:
+                names.append(name)
+        return ', '.join(names)    
                     

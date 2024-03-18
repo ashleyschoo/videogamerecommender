@@ -7,61 +7,48 @@ import games.models as models
 # admin.site.VideoGames
 @admin.register(models.VideoGames)
 class VideoGames(admin.ModelAdmin):
-	fieldsets = (
-			(None, {
-				'fields': (
+	fields = [	'VideoGameID',
 				'VideoGameName',
-				'PC(Windows)',
-				'PC(MAC)',
+				'PC_Windows',
+				'PC_MAC',
 				'Playstation',	
 				'NintendoSwitch',
 				'Xbox',
-				'Phone(Android)',
-				'Phone(iPhone)',
+				'Phone_Android',
+				'Phone_iPhone',
 				'Description',
-				'YouTubeTrailerLink'
-				)
-				}),
-			# ('AgeRating', {
-			# 	'fields': [
-			# 		(
-			# 		'AgeRating'
-			# 		)],
-			# 		})
-			# ('GenreCategory', {
-			# 	'fields': [
-			# 		(
-			# 		'GenreCategory'
-			# 		)],
-			# 		})
-			# ('NumberofPlayers', {
-			# 	'fields': [
-			# 		(
-			# 		'NumberofPlayers'
-			# 		)],
-			# 		})
-			# ('PopularityRating', {
-			# 	'fields': [
-			# 		(
-			# 		'PopularityRating'
-			# 		)]
-			# 		})													
-)
+				'YouTubeTrailerLink',
+				'AgeRating',
+				'GenreCategory',
+				'PopularityRating',
+				'NumberofPlayers'
+				]												
 
-# may need to add the foreign key here from the joining table
-	list_display = (
-		'AgeRating',
-		'GenreCategory',
-		'PopularityRating',
-		'NumberofPlayers'
-		)
+	# may need to add the foreign key here from the joining table
+	list_display = [
+				'VideoGameID',
+				'VideoGameName',
+				'PC_Windows',
+				'PC_MAC',
+				'Playstation',	
+				'NintendoSwitch',
+				'Xbox',
+				'Phone_Android',
+				'Phone_iPhone',
+				'Description',
+				'YouTubeTrailerLink',
+				'AgeRating',
+				'GenreCategory',
+				'PopularityRating',
+				'NumberofPlayers'
+				]
 
-	list_filter = (
-		'AgeRating',
-		'GenreCategory',
-		'PopularityRating',
-		'NumberofPlayers'
-		)
+	list_filter = [
+				'AgeRating',
+				'GenreCategory',
+				'PopularityRating',
+				'NumberofPlayers'
+				]
 
 
 
@@ -70,27 +57,27 @@ class VideoGames(admin.ModelAdmin):
 class AgeRating(admin.ModelAdmin):
 	fields = ['AgeRating']
 	list_display = ['AgeRating']
-	ordering = ['AgeRating']
+	ordering = ['AgeRatingID']
 
 #  admin.site.GenreCategory
 @admin.register(models.GenreCategory)
 class GenreCategory(admin.ModelAdmin):
 	fields = ['GenreCategory']
 	list_display = ['GenreCategory']
-	ordering = ['GenreCategory']
+	ordering = ['GenreCategoryID']
 
 #  admin.site.NumberofPlayers
 @admin.register(models.NumberofPlayers)
 class NumberofPlayers(admin.ModelAdmin):
 	fields = ['NumberofPlayers']
 	list_display = ['NumberofPlayers']
-	ordering = ['NumberofPlayers']
+	ordering = ['NumberofPlayersID']
 
 #  admin.site.PopularityRating
 @admin.register(models.PopularityRating)
 class PopularityRating(admin.ModelAdmin):
 	fields = ['PopularityRating']
 	list_display = ['PopularityRating']
-	ordering = ['PopularityRating']
+	ordering = ['PopularityRatingID']
 
 

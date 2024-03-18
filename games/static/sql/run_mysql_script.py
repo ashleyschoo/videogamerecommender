@@ -17,6 +17,7 @@ def main(args):
 
 	# Setting logging format and default level
 	logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.DEBUG)
+	print("logging")
 
 	msg = [
 		'Connection created.',
@@ -92,6 +93,7 @@ def connect_to_db(config):
 		local_infile=config['local_infile'])
 
 
+#https://docs.python.org/3/howto/argparse.html#argparse-tutorial
 def parse_args(args):
 	parser = argparse.ArgumentParser(
 		description='''This python script is designed to process MySQL scripts.  The script 
@@ -101,7 +103,7 @@ def parse_args(args):
 		each. If successful, the script commits the changes, closes the cursor and then closes the 
 		connection.  Otherwise, it rolls back the transaction and reports the error encountered. '''
 	)
-	parser.add_argument("-c", "--config", type=str, required=True, help="path to config file")
+	parser.add_argument("-c", "--config", type=str, required=True, help="path to config file (yaml)")
 	parser.add_argument("-p", "--path", type=str, required=True, help="path to script")
 	return parser.parse_args(args)
 
