@@ -57,27 +57,27 @@ class VideoGames(admin.ModelAdmin):
 class AgeRating(admin.ModelAdmin):
 	fields = ['AgeRating']
 	list_display = ['AgeRating']
-	ordering = ['AgeRatingID']
+	ordering = ['AgeRating_ID']
 
 #  admin.site.GenreCategory
 @admin.register(models.GenreCategory)
 class GenreCategory(admin.ModelAdmin):
 	fields = ['GenreCategory']
 	list_display = ['GenreCategory']
-	ordering = ['GenreCategoryID']
+	ordering = ['GenreCategory_ID']
 
 #  admin.site.NumberofPlayers
 @admin.register(models.NumberofPlayers)
 class NumberofPlayers(admin.ModelAdmin):
 	fields = ['NumberofPlayers']
 	list_display = ['NumberofPlayers']
-	ordering = ['NumberofPlayersID']
+	ordering = ['NumberofPlayers_ID']
 
 #  admin.site.PopularityRating
 @admin.register(models.PopularityRating)
 class PopularityRating(admin.ModelAdmin):
 	fields = ['PopularityRating']
 	list_display = ['PopularityRating']
-	ordering = ['PopularityRatingID']
+	ordering = ['PopularityRating_ID']
 
 

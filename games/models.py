@@ -23,13 +23,13 @@ from django.urls import reverse
 
 
 class AgeRating(models.Model):
-    AgeRatingID = models.AutoField(primary_key=True)
+    AgeRating_ID = models.AutoField(primary_key=True)
     AgeRating = models.CharField(max_length=255)
 
     class Meta:
         managed = False
         db_table = 'AgeRating'
-        ordering = ['AgeRatingID']
+        ordering = ['AgeRating_ID']
         verbose_name = 'AgeRating'
         verbose_name_plural = 'AgeRatings'
 
@@ -37,13 +37,13 @@ class AgeRating(models.Model):
         return str(self.AgeRating)
 
 class GenreCategory(models.Model):
-    GenreCategoryID = models.AutoField(primary_key=True)
+    GenreCategory_ID = models.AutoField(primary_key=True)
     GenreCategory = models.CharField(max_length=255)
 
     class Meta:
         managed = False
         db_table = 'GenreCategory'
-        ordering = ['GenreCategoryID']
+        ordering = ['GenreCategory_ID']
         verbose_name = 'GenreCategory'
         verbose_name_plural = 'GenreCategories'
 
@@ -52,13 +52,13 @@ class GenreCategory(models.Model):
 
 
 class NumberofPlayers(models.Model):
-    NumberofPlayersID = models.AutoField(primary_key=True)
+    NumberofPlayers_ID = models.AutoField(primary_key=True)
     NumberofPlayers = models.CharField(max_length=255)
 
     class Meta:
         managed = False
         db_table = 'NumberofPlayers'
-        ordering = ['NumberofPlayersID']
+        ordering = ['NumberofPlayers_ID']
         verbose_name = 'NumberofPlayers'
         verbose_name_plural = 'NumberofPlayers'
 
@@ -66,13 +66,13 @@ class NumberofPlayers(models.Model):
         return str(self.NumberofPlayers)
 
 class PopularityRating(models.Model):
-    PopularityRatingID = models.AutoField(primary_key=True)
+    PopularityRating_ID = models.AutoField(primary_key=True)
     PopularityRating = models.CharField(max_length=255)
 
     class Meta:
         managed = False
         db_table = 'PopularityRating'
-        ordering = ['PopularityRatingID']
+        ordering = ['PopularityRating_ID']
         verbose_name = 'PopularityRating'
         verbose_name_plural = 'PopularityRatings'
 

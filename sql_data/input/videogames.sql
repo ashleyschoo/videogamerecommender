@@ -8,9 +8,9 @@ SET FOREIGN_KEY_CHECKS=1;
 -- Serve as lookup tables
 -- 2.1 AgeRating
 CREATE TABLE IF NOT EXISTS AgeRating (
-  AgeRatingID INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+  AgeRating_ID INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
   AgeRating VARCHAR(255) NOT NULL,
-  PRIMARY KEY (AgeRatingID)
+  PRIMARY KEY (AgeRating_ID)
 )
 ENGINE=InnoDB
 CHARACTER SET utf8mb4
@@ -27,9 +27,9 @@ INTO TABLE AgeRating
 
 -- 2.2 GenreCateogry
 CREATE TABLE IF NOT EXISTS  GenreCategory (
-  GenreCategoryID INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+  GenreCategory_ID INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
   GenreCategory VARCHAR(255) NOT NULL,
-  PRIMARY KEY (GenreCategoryID)
+  PRIMARY KEY (GenreCategory_ID)
 )
 ENGINE=InnoDB
 CHARACTER SET utf8mb4
@@ -46,9 +46,9 @@ INTO TABLE GenreCategory
 
 -- 2.3 NumberofPlayers
 CREATE TABLE IF NOT EXISTS NumberofPlayers (
-  NumberofPlayersID INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+  NumberofPlayers_ID INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
   NumberofPlayers VARCHAR(255) NOT NULL,
-  PRIMARY KEY (NumberofPlayersID)
+  PRIMARY KEY (NumberofPlayers_ID)
 )
 ENGINE=InnoDB
 CHARACTER SET utf8mb4
@@ -67,9 +67,9 @@ INTO TABLE NumberofPlayers
 
 -- 2.4 PopularityRating
 CREATE TABLE IF NOT EXISTS PopularityRating (
-  PopularityRatingID INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+  PopularityRating_ID INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
   PopularityRating VARCHAR(255) NOT NULL,
-  PRIMARY KEY (PopularityRatingID)
+  PRIMARY KEY (PopularityRating_ID)
 )
 ENGINE=InnoDB
 CHARACTER SET utf8mb4
@@ -145,15 +145,15 @@ CREATE TABLE IF NOT EXISTS VideoGames (
   Phone_iPhone VARCHAR(1),
   Description VARCHAR(255),
   YouTubeTrailerLink VARCHAR(255),
-  AgeRatingID INTEGER,
-  GenreCategoryID INTEGER,
-  NumberofPlayersID INTEGER,
-  PopularityRatingID INTEGER,
+  AgeRating_ID INTEGER,
+  GenreCategory_ID INTEGER,
+  NumberofPlayers_ID INTEGER,
+  PopularityRating_ID INTEGER,
   PRIMARY KEY (VideoGameID),
-  FOREIGN KEY (AgeRatingID) REFERENCES AgeRating(AgeRatingID) ON DELETE RESTRICT ON UPDATE CASCADE,
-  FOREIGN KEY (GenreCategoryID) REFERENCES GenreCategory(GenreCategoryID) ON DELETE RESTRICT ON UPDATE CASCADE,  
-  FOREIGN KEY (NumberofPlayersID) REFERENCES NumberofPlayers(NumberofPlayersID) ON DELETE RESTRICT ON UPDATE CASCADE,
-  FOREIGN KEY (PopularityRatingID) REFERENCES PopularityRating(PopularityRatingID) ON DELETE RESTRICT ON UPDATE CASCADE
+  FOREIGN KEY (AgeRating_ID) REFERENCES AgeRating(AgeRating_ID) ON DELETE RESTRICT ON UPDATE CASCADE,
+  FOREIGN KEY (GenreCategory_ID) REFERENCES GenreCategory(GenreCategory_ID) ON DELETE RESTRICT ON UPDATE CASCADE,  
+  FOREIGN KEY (NumberofPlayers_ID) REFERENCES NumberofPlayers(NumberofPlayers_ID) ON DELETE RESTRICT ON UPDATE CASCADE,
+  FOREIGN KEY (PopularityRating_ID) REFERENCES PopularityRating(PopularityRating_ID) ON DELETE RESTRICT ON UPDATE CASCADE
 
 )
 ENGINE=InnoDB
@@ -172,13 +172,13 @@ INSERT IGNORE INTO VideoGames
   Phone_iPhone,
   Description,
   YouTubeTrailerLink,
-  AgeRatingID,
-  GenreCategoryID,
-  NumberofPlayersID,
-  PopularityRatingID
+  AgeRating_ID,
+  GenreCategory_ID,
+  NumberofPlayers_ID,
+  PopularityRating_ID
  )
    SELECT DISTINCT v.VideoGameName, v.PC_Windows, v.PC_MAC, v.Playstation, v.NintendoSwitch, v.Xbox, v.Phone_Android, v.Phone_iPhone, v.Description,
-  v.YouTubeTrailerLink, a.AgeRatingID, g.GenreCategoryID, n.NumberofPlayersID, p.PopularityRatingID
+  v.YouTubeTrailerLink, a.AgeRating_ID, g.GenreCategory_ID, n.NumberofPlayers_ID, p.PopularityRating_ID
   FROM temp_VideoGames as v
   LEFT JOIN AgeRating as a
   ON v.AgeRating = REPLACE(a.AgeRating, char(13),'')

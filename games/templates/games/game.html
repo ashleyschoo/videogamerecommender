@@ -21,7 +21,7 @@
 
 
 	<!-- safe filter on for raw HTML stored in database -->
-	<li><a href="{% url 'games_detail' VideoGames.pk %}">{{ VideoGames.VideoGameName | safe }}</a></li>
+	<li><a href="{% url 'game' VideoGames.pk %}">{{ VideoGames.VideoGameName | safe }}</a></li>
 	{% endfor %}
 
   </ul>
