@@ -113,7 +113,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'VideoGames',
-        'USER': 'aschoo',
+        'USER': 'root',
         'PASSWORD': 'Password12!',
         'HOST': 'localhost',
         'PORT': '3306',

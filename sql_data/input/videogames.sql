@@ -177,15 +177,15 @@ INSERT IGNORE INTO VideoGames
   NumberofPlayersID,
   PopularityRatingID
  )
-  SELECT DISTINCT v.VideoGameName, v.PC_Windows, v.PC_MAC, v.Playstation, v.NintendoSwitch, v.Xbox, v.Phone_Android, v.Phone_iPhone, v.Description,
+   SELECT DISTINCT v.VideoGameName, v.PC_Windows, v.PC_MAC, v.Playstation, v.NintendoSwitch, v.Xbox, v.Phone_Android, v.Phone_iPhone, v.Description,
   v.YouTubeTrailerLink, a.AgeRatingID, g.GenreCategoryID, n.NumberofPlayersID, p.PopularityRatingID
   FROM temp_VideoGames as v
   LEFT JOIN AgeRating as a
-  ON v.AgeRating = a.AgeRating
+  ON v.AgeRating = REPLACE(a.AgeRating, char(13),'')
   LEFT JOIN GenreCategory as g
-  ON v.GenreCategory = g.GenreCategory
+  ON v.GenreCategory = REPLACE(g.GenreCategory, char(13),'')
   LEFT JOIN NumberofPlayers as n
-  ON v.NumberofPlayers = n.NumberofPlayers
+  ON v.NumberofPlayers = REPLACE(n.NumberofPlayers, char(13),'')
   LEFT JOIN PopularityRating as p
   ON v.PopularityRating = p.PopularityRating;
 

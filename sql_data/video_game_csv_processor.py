@@ -44,8 +44,9 @@ def main(argv=None):
 	# Write AgeRating name to a .csv file
 	AgeRating = extract_filtered_series(video_game_data_frame, ['AgeRating'])
 	AgeRatingTrimmed = trim_columns(AgeRating)
+	AgeRtingStripped = AgeRatingTrimmed.replace({r'\\r\n': ''}, regex=True)
 	AgeRating_csv = 'C:/Users/ashle/OneDrive/Documents/Software Engineering/videogamerecommender/sql_data/output/AgeRating.csv'
-	write_series_to_csv(AgeRating, AgeRating_csv, ',', False)
+	write_series_to_csv(AgeRtingStripped, AgeRating_csv, ',', False)
 	logging.info(msg[2].format(os.path.abspath(AgeRating_csv)))
 
 	# Write GenreCategory name to a .csv file

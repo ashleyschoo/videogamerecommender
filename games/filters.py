@@ -2,38 +2,39 @@ import django_filters
 from games.models import VideoGames, AgeRating, GenreCategory, NumberofPlayers, PopularityRating
 
 class FilterView(django_filters.FilterSet):
-	VideoGameID = django_filters.CharFilter(
-		field_name='VideoGames__VideoGameID',
-		label='VideoGameID',
-		lookup_expr='exact'
+	VideoGameName = django_filters.CharFilter(
+		field_name='VideoGames__VideoGameName',
+		label='VideoGameName',
+		lookup_expr='icontains'
 		)
 
-	AgeRating = django_filters.ModelChoiceFilter(
-		queryset=AgeRating.objects.all(),
-		field_name='AgeRatingID',
-		label='AgeRating',
-		)
-	GenreCategory = django_filters.ModelChoiceFilter(
-		queryset=GenreCategory.objects.all(),
-		field_name='GenreCategoryID',
-		label='GenreCategory',
-		)
-	NumberofPlayers = django_filters.ModelChoiceFilter(
-		queryset=NumberofPlayers.objects.all(),
-		field_name='NumberofPlayersID',
-		label='NumberofPlayers',
-		)
-	PopularityRating = django_filters.ModelChoiceFilter(
-		queryset=PopularityRating.objects.all(),
-		field_name='PopularityRatingID',
-		label='PopularityRating',
-		)
+	# AgeRating = django_filters.ModelChoiceFilter(
+	# 	queryset=AgeRating.objects.all(),
+	# 	field_name='AgeRatingID',
+	# 	label='AgeRating',
+	# 	)
+	# GenreCategory = django_filters.ModelChoiceFilter(
+	# 	queryset=GenreCategory.objects.all(),
+	# 	field_name='GenreCategoryID',
+	# 	label='GenreCategory',
+	# 	)
+	# NumberofPlayers = django_filters.ModelChoiceFilter(
+	# 	queryset=NumberofPlayers.objects.all(),
+	# 	field_name='NumberofPlayersID',
+	# 	label='NumberofPlayers',
+	# 	)
+	# PopularityRating = django_filters.ModelChoiceFilter(
+	# 	queryset=PopularityRating.objects.all(),
+	# 	field_name='PopularityRatingID',
+	# 	label='PopularityRating',
+	# 	)
 
 	class Meta:
 		model = VideoGames
 		# form = SearchForm
 		# fields [] is required, even if empty.
-		fields = ['VideoGameID','AgeRating','GenreCategory','NumberofPlayers','PopularityRating']
+		#'VideoGameID','AgeRating','GenreCategory','NumberofPlayers','PopularityRating'
+		fields = []
 
 
 class VideoGameNameFilterView(django_filters.FilterSet):
