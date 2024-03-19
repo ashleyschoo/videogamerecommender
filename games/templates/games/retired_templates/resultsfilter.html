@@ -29,9 +29,9 @@
       </div>
     </div>
     <div class="col-sm-6">
-
+<!-- 
       {% for games in object_list %}
-        <h4> <a href="{% url 'resultsfilter' VideoGames.pk %}">{{ VideoGames.games | safe }}</a></h4>
+        <h4> <a href="{% url 'questions'  %}">{{ VideoGames.games | safe }}</a></h4>
         {{ VideoGames.VideoGameName | safe }}
         {{ VideoGames.Description | safe }}
         {{ VideoGames.YouTubeTrailerLink | safe }}
@@ -39,7 +39,7 @@
         {{ VideoGames.AgeRating | safe }}
         {{ VideoGames.NumberofPlayers | safe }}
         {{ VideoGames.PopularityRating | safe }}
-      {% endfor %}
+      {% endfor %} -->
     </div>
   </div>
 {% endblock content %}

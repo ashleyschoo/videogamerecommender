@@ -8,13 +8,12 @@
 	<header>
 	  <div class="row">
 	    <div class="col-sm-11">
-	      <h2>Game Recommendation Results</h2>
+	      <h2>Welcome to the Video Game Recommender</h2>
 	    </div>
 	    <div class="col-sm-7">
-	    	&nbsp;<a class="btn btn-outline-primary" href="{% url 'questions' %}">New Search</a>
-      		
+	    	&nbsp;<a class="btn btn-outline-primary" href="{% url 'home' %}">Refresh Quiz</a>
     	</div>
-      Select one or more filters relevant to your search and then click "submit".
+      <p>Answer the following questions and then click "Submit".</p>
 	  </div>
 	</header>
 
@@ -30,38 +29,23 @@
       </div>
     </div>
     <div class="col-sm-6">
+    {% if object_list %}
 
-      {% for games in object_list %}
-        <h4> <a href="{% url 'game'  %}">{{ VideoGames.VideoGameName | safe }}</a></h4>
-        {% if VideoGames.NumberofPlayers %}
-          {{ VideoGames.NumberofPlayers | safe }}
-        {% endif %}  
+    <ul>
+     {% for game in object_list %}
 
-        {% if VideoGames.VideoGameName %}
-          {{ VideoGames.VideoGameName | safe }}
-        {% endif %} 
-
-        {% if VideoGames.Description %}  
-          {{ VideoGames.Description | safe }}
-        {% endif %}         
-
-        {% if VideoGames.YouTubeTrailerLink %}
-          {{ VideoGames.YouTubeTrailerLink | safe }}
-        {% endif %}        
-
-        {% if VideoGames.GenreCategory %}
-          {{ VideoGames.GenreCategory | safe }}
-        {% endif %} 
-
-        {% if VideoGames.AgeRating %}
-          {{ VideoGames.AgeRating | safe }}
-        {% endif %} 
-
-        {% if VideoGames.PopularityRating %}
-          {{ VideoGames.PopularityRating | safe }}
-        {% endif %} 
-
+      <!-- safe filter on for raw HTML stored in database -->
+      <li><a href="{{ game.YouTubeTrailerLink | safe }}">{{ game.VideoGameName | safe }}</a>
+        <p>{{ game.Description | safe }}</p>
+        <p>{{ game.AgeRating_ID.AgeRating | safe }}</p>
+      </li>
       {% endfor %}
+
+    </ul>
+    {% else %}
+    <p>No games are available to view.</p>
+    {% endif %}
+
     </div>
   </div>
 {% endblock content %}

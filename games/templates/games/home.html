@@ -1,125 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="author" content="Ashley Schoonover">
-    <meta name="description" content="Video Game Recommender - Start Here ">
-    <meta name="keywords" content="video game">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start Here</title>
-    <link rel="stylesheet" href="questions_style.css">
-    <style>
-    *{box-sizing:border-box}
-        header{
-            display: block;
-            height: 300px;
-            }
-        h1{
-            color: #6A2E2A;
-            font-weight: bold;
-            text-align: center;
-        }
+{% extends 'games/base.html' %}
 
-        h2{
-            color: #6A2E2A;
-            font-weight: bold;
-            text-align: center;
-            font-size: 18;
-            }
+{% load crispy_forms_tags %}
 
-        body{background: #FFE4E1;}
+{% block content %}
 
+<article>
+    <header>
+      <div class="row">
+        <div class="col-sm-11">
+          <h2>Welcome to the Video Game Recommender</h2>
+        </div>
+        <div class="col-sm-7">
+            &nbsp;<a class="btn btn-outline-primary" href="{% url 'home' %}">Refresh Quiz</a>
+        </div>
+      <p>Answer the following questions and then click "Submit".</p>
+      </div>
+    </header>
 
-        table {
-            font-family: "Times New Roman", Times, serif;
-            font-size: 20px;
-            border: 8px outset;
-            width: 75%;
-            border: 5px solid;
-            border-color: #77212E; 
-            border-collapse: collapse;
-            margin-left: auto;
-            margin-right: auto;
-          }
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="px-2 py-2" style="border:1px solid #8E8D8A;">
+        <form action="" method="get">
+          {{ filter.form|crispy }}
+          <!-- adds a submit button -->
+          <button type="submit" class="btn btn-outline-primary" >Submit</button>
+            &nbsp;<button type="reset" value="reset" class="btn btn-outline-secondary">Clear</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-6">
 
-        th {  
-               padding: 10px; 
-               font-style: italic; 
-               font-weight: bold;
-               border: 3px solid;
-               border-color: #77212E;       
-               color: #FFE4E1;
-               font-size: 20px;
-              }
-        td {
-               border: 2px solid;
-               border-color: #77212E;
-               text-align: center;
-               padding: 20px;
-               padding-top: 50px;
-               padding-bottom: 50px;
-               color: #6A2E2A;
-               font-size: 20px;
-              }
-
-        .th_title{
-               background-color: #6A2E2A;
-               font-size: 25px;
-              }     
-        .td_chocolate{
-               background-color: chocolate;
-               font-size: 15px;
-              }   
-        .td_vanilla{
-               background-color: #FFF8DC;
-               font-size: 15px;
-              }  
-        .td_strawberry{
-               background-color: #FFB6C1;
-               font-size: 15px;
-              }  
-        .td_bluemoon{
-               background-color: #87CEFA;
-               font-size: 15px;
-              }  
-        .td_superman{
-               background-image: linear-gradient(to right, red,yellow, #87CEFA);
-               font-size: 15px;
-              }  
-        .td_mint{
-                background-image: linear-gradient(180deg, #00FA9A, chocolate);
-               font-size: 15px;
-              }  
-
-    </style>
-</head>
-<body>
-
-    <header> <h1> Video Game Recommender </h1> 
-            <h2> Answer the following questions to see your personalized video game recommendations! </h2> 
-    </header>   
-      <table>
-     
-<!-- header row 1 -->
-  <tr>
-    <th colspan="8" class="th_title">Start Here: What's your favorite ice cream flavor?</th>   
-  </tr>
-
-<!-- data row 2 -->
-   <tr>
-      <td class="td_chocolate"><a href="vgr_self_or_gift.html">Chocolate</a></td>
-      <td class="td_vanilla"><a href="vgr_friends_or_solo.html">Vanilla</a></td>
-      <td class="td_strawberry"><a href="vgr_self_or_gift.html">Strawberry</a></td>
-   </tr> 
-    
-<!-- data row 3 -->
-    <tr>
-      <td class="td_bluemoon"><a href="vgr_friends_or_solo.html">Blue Moon</a></td>
-      <td class="td_superman"><a href="vgr_self_or_gift.html">Superman</a></td>
-      <td class="td_mint"><a href="vgr_friends_or_solo.html">Mint Chocolate Chip</a></td>
-    </tr>
-  </table>
-
-
-</body>
-</html>   
+    </div>
+  </div>
+{% endblock content %}

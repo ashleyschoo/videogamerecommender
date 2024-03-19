@@ -1,6 +1,7 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 import django_filters
+from django import forms
 from django_filters.views import FilterView
 from django.forms import ModelForm
 from django.http import HttpResponse, HttpResponseRedirect
@@ -19,10 +20,11 @@ from .models import AgeRating
 from .models import GenreCategory
 from .models import NumberofPlayers
 from .models import PopularityRating
-from .forms import VideoGameForm
+from .forms import forms
+from games.forms import VideoGameForm
 from games.forms import forms
 from .filters import VideoGames
-from .filters import VideoGameNameFilterView
+from .filters import VideoGamesFilter
 
 # Create your views here.
 
@@ -40,20 +42,20 @@ def games_detail(request, VideoGameID):
         question = VideoGames.objects.get(pk=VideoGameID)
     except VideoGames.DoesNotExist:
         raise Http404("VideoGame does not exist")
-    return render(request, 'games/detail.html', {'VideoGames': VideoGames})     
+    return render(request, 'games/game.html', {'VideoGames': VideoGames})     
 
-class HomePageView(generic.TemplateView):
+class HomePageView(FilterView):
     template_name = 'games/home.html'
+    filterset_class = VideoGamesFilter
+
+# class QuestionPageView(generic.TemplateView):
+#     template_name = 'games/questions.html'     
 
 
-class QuestionPageView(generic.TemplateView):
-    template_name = 'games/questions.html'     
-
-
-class FilterView(FilterView):
+class VideoGamesFilterView(FilterView):
     #model = VideoGames
-    filterset_class = VideoGameFilterView
-    template_name = 'games/resultsfilter.html'
+    filterset_class = VideoGamesFilter
+    template_name = 'games/questions.html'
     #context_object_name = 'VideoGamesFiltered'    
 
 
