@@ -3,7 +3,7 @@ from games.models import VideoGames, AgeRating, GenreCategory, NumberofPlayers, 
 
 class FilterView(django_filters.FilterSet):
 	VideoGameName = django_filters.CharFilter(
-		field_name='VideoGames__VideoGameName',
+		field_name='VideoGameName',
 		label='VideoGameName',
 		lookup_expr='icontains'
 		)
@@ -37,7 +37,7 @@ class FilterView(django_filters.FilterSet):
 		fields = []
 
 
-class VideoGameNameFilterView(django_filters.FilterSet):
+class VideoGameFilterView(django_filters.FilterSet):
 	VideoGameName = django_filters.CharFilter(
 		field_name='VideoGameName',
 		label='VideoGameName',
@@ -45,17 +45,17 @@ class VideoGameNameFilterView(django_filters.FilterSet):
 	)
 
 	# Add filters here
-	Description = django_filters.CharFilter(
-		field_name='Description',
-		label='Description',
-		lookup_expr='icontains'
+	# Description = django_filters.CharFilter(
+	# 	field_name='Description',
+	# 	label='Description',
+	# 	lookup_expr='icontains'
 
-		)
-	YouTubeTrailerLink = django_filters.CharFilter(
-		field_name = 'YouTubeTrailerLink',
-		label='YouTubeTrailerLink',
-		lookup_expr='icontains'
-		)
+	# 	)
+	# YouTubeTrailerLink = django_filters.CharFilter(
+	# 	field_name = 'YouTubeTrailerLink',
+	# 	label='YouTubeTrailerLink',
+	# 	lookup_expr='icontains'
+	# 	)
 
 
 

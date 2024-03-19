@@ -45,17 +45,16 @@ def games_detail(request, VideoGameID):
 class HomePageView(generic.TemplateView):
     template_name = 'games/home.html'
 
-class AboutPageView(generic.TemplateView):
-    template_name = 'games/about.html'  
 
 class QuestionPageView(generic.TemplateView):
     template_name = 'games/questions.html'     
 
+
 class FilterView(FilterView):
-    model = VideoGames
-    filterset_class = VideoGameNameFilterView
+    #model = VideoGames
+    filterset_class = VideoGameFilterView
     template_name = 'games/resultsfilter.html'
-    context_object_name = 'VideoGames'    
+    #context_object_name = 'VideoGamesFiltered'    
 
 
 class VideoGamesListView(generic.ListView):
@@ -64,4 +63,4 @@ class VideoGamesListView(generic.ListView):
     template_name = 'games/game.html'
     
     def get_queryset(self):
-        return VideoGames.objects.all().select_related('AgeRating', 'GenreCategory', 'NumberofPlayers', 'PopularityRating').order_by('VideoGameName')[:5]
+        return VideoGames.objects.all().select_related('AgeRating', 'GenreCategory', 'NumberofPlayers', 'PopularityRating').order_by('VideoGameName')[:5].values()
