@@ -109,7 +109,7 @@ class VideoGames(models.Model):
         return str(self.VideoGameName)
 
     def get_absolute_url(self):
-        return reverse('games_detail', kwargs={'pk': self.pk})
+        return reverse('games', kwargs={'pk': self.pk})
 
 
     def VideoGame_display(self):
