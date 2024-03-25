@@ -26,5 +26,12 @@
             text-align: center;
             font-size: 18;
             }
+        .img_controller{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 200px;
+            width: 250px;
+        }    
 
             

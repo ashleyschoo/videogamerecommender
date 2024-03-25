@@ -1,21 +1,21 @@
 {% extends 'games/base.html' %}
 
+{% load static %}
+
 {% load crispy_forms_tags %}
 
 {% block content %}
 
 <article>
 	<header>
-	  <div class="row">
-	    <div class="col-sm-11">
+        <link rel="stylesheet" href="{% static 'css/questions_style.css' %}">
 	      <h2>Welcome to the Video Game Recommender</h2>
-	    </div>
-	    <div class="col-sm-7">
-	    	&nbsp;<a class="btn btn-outline-primary" href="{% url 'home' %}">Refresh Quiz</a>
-    	</div>
-      <p>Answer the following questions and then click "Submit".</p>
-	  </div>
+        <img src="{% static 'images/video_game_controller_seethrough.png' %}" class="img_controller" alt="a video game controller">
+
+	    	&nbsp;<a class="btn btn-outline-primary" href="{% url 'questions' %}">Refresh Quiz</a>
 	</header>
+
+<h3>Answer some or all of following questions and then click "Submit" to view your recommended games.</h3>
 
   <div class="row">
     <div class="col-sm-3">
@@ -24,7 +24,7 @@
           {{ filter.form|crispy }}
           <!-- adds a submit button -->
           <button type="submit" class="btn btn-outline-primary" >Submit</button>
-    		&nbsp;<button type="reset" value="reset" class="btn btn-outline-secondary">Clear</button>
+    		&nbsp;<button type="reset" value="reset" class="btn btn-outline-secondary" onClick="this.form.reset()" >Clear</button>
         </form>
       </div>
     </div>
@@ -37,7 +37,10 @@
       <!-- safe filter on for raw HTML stored in database -->
       <li><a href="{{ game.YouTubeTrailerLink | safe }}">{{ game.VideoGameName | safe }}</a>
         <p>{{ game.Description | safe }}</p>
-        <p>{{ game.AgeRating_ID.AgeRating | safe }}</p>
+        <p>{{ game.AgeRating.AgeRating | safe }}</p>
+        <p>Genre: {{ game.GenreCategory.GenreCategory | safe }}</p>
+        <p>Number of Players: {{ game.NumberofPlayers.NumberofPlayers | safe }}</p>
+        <p>Popularity Rating: {{ game.PopularityRating.PopularityRating | safe }}</p>
       </li>
       {% endfor %}
 
@@ -49,3 +52,5 @@
     </div>
   </div>
 {% endblock content %}
+
+</body>
