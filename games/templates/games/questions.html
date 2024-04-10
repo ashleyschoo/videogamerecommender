@@ -10,25 +10,25 @@
 	<header>
         <link rel="stylesheet" href="{% static 'css/questions_style.css' %}">
 	      <h2>Welcome to the Video Game Recommender</h2>
-        <img src="{% static 'images/video_game_controller_seethrough.png' %}" class="img_controller" alt="a video game controller">
+        <img src="{% static 'images/video_game_controller_clean.png' %}" class="img_controller" alt="a video game controller">
 
 	    	&nbsp;<a class="btn btn-outline-primary" href="{% url 'questions' %}">Refresh Quiz</a>
 	</header>
 
-<h3>Answer some or all of following questions and then click "Submit" to view your recommended games.</h3>
+<h3> Answer some or all of following questions and then click "Submit" to view your recommended games.</h3>
 
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-4">
       <div class="px-2 py-2" style="border:1px solid #8E8D8A;">
         <form action="" method="get">
           {{ filter.form|crispy }}
           <!-- adds a submit button -->
-          <button type="submit" class="btn btn-outline-primary" >Submit</button>
+          <button type="submit" name="submitted" class="btn btn-outline-primary" >Submit</button>
     		&nbsp;<button type="reset" value="reset" class="btn btn-outline-secondary" onClick="this.form.reset()" >Clear</button>
         </form>
       </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-8">
     {% if object_list %}
 
     <ul>

@@ -81,6 +81,7 @@ class PopularityRating(models.Model):
 
 
 class VideoGames(models.Model):
+    #CHOICES = [('0','No'),('1','Yes')]
     VideoGameID = models.AutoField(primary_key=True)
     VideoGameName = models.CharField(unique=True, max_length=255)
     PC_Windows = models.CharField(max_length=1)

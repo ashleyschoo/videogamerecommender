@@ -8,7 +8,7 @@ urlpatterns = [
     path('questions/', views.VideoGamesFilterView.as_view(), name='questions'),
     #path('resultsfilter/', views.VideoGamesFilterView.as_view(), kwargs=None, name='resultsfilter'),
     #path('games_detail/', views.FilterView.as_view(), kwargs=None, name='games_detail'),
-    path('game/', views.VideoGamesListView.as_view(), kwargs=None, name='game'),
+    path('game/', views.VideoGamesListView.as_view(), kwargs=None, name='game')
 
 
 ]

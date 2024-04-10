@@ -27,11 +27,17 @@ from .filters import VideoGames
 from .filters import VideoGamesFilter
 
 # Create your views here.
+def search(request):
+    submitted = 'submitted' in request.GET
+    data = request.GET if submitted else None
+    VideoGames = VideoGamesFilter(data, queryset=VideoGames.objects.all())
+    return render(request, 'games/game.html', {'VideoGames': VideoGames})  
 
 
 def index(request):
+    submitted = 'submitted' in request.GET
     latest_question_list = VideoGames.objects.order_by('VideoGameName')[:5]
-    template = loader.get_template('games/questions.html')
+    template = loader.get_template('games/home.html')
     output = {
         'latest_question_list': latest_question_list,
     }
@@ -66,3 +72,4 @@ class VideoGamesListView(generic.ListView):
     
     def get_queryset(self):
         return VideoGames.objects.all().select_related('AgeRating', 'GenreCategory', 'NumberofPlayers', 'PopularityRating').order_by('VideoGameName')[:5].values()
+

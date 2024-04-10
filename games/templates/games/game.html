@@ -1,5 +1,7 @@
 {% extends 'games/base.html' %}
-  {% load video_game_extras %}
+{% load static %}  <!-- do not delete this line or app wont work -->
+
+{% load video_game_extras %}
 
 {% block content %}
 
@@ -7,6 +9,7 @@
 <article>
   <header>
 		<h1>Recommended Video Games</h1>
+		 <img src="{% static 'images/video_game_controller_clean.png' %}" class="img_controller" alt="a video game controller">
   </header>
 
   {% if VideoGames %}
@@ -25,7 +28,7 @@
 	  <p>No games are available to view.</p>
 	  {% endif %}
 
-  <p>page count: {{ VideoGames.count }}</p>
+  <p>Total Games: {{ VideoGames.count }}</p>
 </article>
 
 {% endblock content %}}
