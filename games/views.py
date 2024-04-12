@@ -36,7 +36,7 @@ def search(request):
 
 def index(request):
     submitted = 'submitted' in request.GET
-    latest_question_list = VideoGames.objects.order_by('VideoGameName')[:5]
+    latest_question_list = VideoGames.objects.order_by('VideoGameName')
     template = loader.get_template('games/home.html')
     output = {
         'latest_question_list': latest_question_list,
@@ -71,5 +71,5 @@ class VideoGamesListView(generic.ListView):
     template_name = 'games/game.html'
     
     def get_queryset(self):
-        return VideoGames.objects.all().select_related('AgeRating', 'GenreCategory', 'NumberofPlayers', 'PopularityRating').order_by('VideoGameName')[:5].values()
+        return VideoGames.objects.all().select_related('AgeRating', 'GenreCategory', 'NumberofPlayers', 'PopularityRating').order_by('VideoGameName').values()
 

@@ -114,7 +114,7 @@ class VideoGames(models.Model):
 
 
     def VideoGame_display(self):
-        return ', '.join(VideoGames.VideoGame for VideoGames in self.VideoGames.all()[:4])
+        return ', '.join(VideoGames.VideoGame for VideoGames in self.VideoGames.all())
 
     VideoGame_display.short_description = 'Recommended Games: '
 
