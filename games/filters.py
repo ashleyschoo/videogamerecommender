@@ -50,44 +50,44 @@ class VideoGamesFilter(django_filters.FilterSet):
 		#queryset=VideoGames.objects.all().order_by("PC_Windows"),
 		#widget=django_filters.RadioSelect(choices=CHOICES),
 		field_name = 'PC_Windows',
-		label = mark_safe('Will you be playing on a Windows computer? <br/> Enter 1 for Yes, 0 for No')
+		label = mark_safe('Will you be playing on a Windows computer? <br/> Enter 1 for Yes, 0 for No<br/> Leave blank if you\'re indifferent')
 		)
 
 	PC_MAC = django_filters.CharFilter(
 		#queryset=VideoGames.objects.all().order_by("PC_MAC"),
 		field_name = 'PC_MAC',
-		label = mark_safe('Will you be playing on a MAC (Apple) computer? <br/> Enter 1 for Yes, 0 for No')
+		label = mark_safe('Will you be playing on a MAC (Apple) computer? <br/> Enter 1 for Yes, 0 for No<br/> Leave blank if you\'re indifferent')
 		)
 
 	Playstation = django_filters.CharFilter(
 		#queryset=VideoGames.objects.all().order_by("Playstation"),
 		field_name='Playstation',
-		label = mark_safe('Will you be playing on a Playstation? <br/> Enter 1 for Yes, 0 for No')
+		label = mark_safe('Will you be playing on a Playstation? <br/> Enter 1 for Yes, 0 for No<br/> Leave blank if you\'re indifferent')
 		)
 
 	NintendoSwitch = django_filters.CharFilter(
 		#queryset=VideoGames.objects.all().order_by("NintendoSwitch"),
 		field_name='NintendoSwitch',
-		label = mark_safe('Will you be playing on a Nintendo Switch? <br/> Enter 1 for Yes, 0 for No')
+		label = mark_safe('Will you be playing on a Nintendo Switch? <br/> Enter 1 for Yes, 0 for No<br/> Leave blank if you\'re indifferent')
 		)
 
 	Xbox = django_filters.CharFilter(
 		#queryset=VideoGames.objects.all().order_by("Xbox"),
 		field_name = 'Xbox',
-		label = mark_safe('Will you be playing on an Xbox?<br />Enter 1 for Yes, 0 for No')
+		label = mark_safe('Will you be playing on an Xbox?<br />Enter 1 for Yes, 0 for No<br/> Leave blank if you\'re indifferent')
 		)
 
 	Phone_Android = django_filters.CharFilter(
 		#queryset=VideoGames.objects.all().order_by("Phone_Android"),
 		field_name='Phone_Android',
-		label = mark_safe('Will you be playing on an Android phone?<br />Enter 1 for Yes, 0 for No')
+		label = mark_safe('Will you be playing on an Android phone?<br />Enter 1 for Yes, 0 for No<br/> Leave blank if you\'re indifferent')
 		)
 
 
 	Phone_iPhone = django_filters.CharFilter(
 		#queryset=VideoGames.objects.all().order_by("Phone_iPhone"),
 		field_name='Phone_iPhone',
-		label = mark_safe('Will you be playing on an iPhone? \n Enter 1 for Yes, 0 for No')
+		label = mark_safe('Will you be playing on an iPhone?<br />Enter 1 for Yes, 0 for No<br/> Leave blank if you\'re indifferent')
 		)
 
 	AgeRating = django_filters.MultipleChoiceFilter(
